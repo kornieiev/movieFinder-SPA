@@ -1,4 +1,4 @@
-import { NavLink, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import SearchMovie from '../SearchMovie/SearchMovie';
 import Trending from 'components/Trending/Trending';
 import { AppWrap, Link } from './App.styled';
