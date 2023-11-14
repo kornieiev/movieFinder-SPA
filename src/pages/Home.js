@@ -18,7 +18,6 @@ const Home = () => {
   }, []);
 
   const location = useLocation();
-  console.log('location Home:', location);
 
   return (
     <>

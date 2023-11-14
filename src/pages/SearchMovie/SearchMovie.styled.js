@@ -1,4 +1,4 @@
-import { Formik, Field, Form } from 'formik';
+import { Form } from 'formik';
 import styled from 'styled-components';
 
 export const MoviesWrap = styled.div`

@@ -1,7 +1,5 @@
 import { Outlet } from 'react-router-dom';
-
 import { AppWrap, Link } from './Layout.styled.js';
-
 import React from 'react';
 
 export default function Layout() {

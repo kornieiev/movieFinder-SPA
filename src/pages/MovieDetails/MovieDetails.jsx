@@ -12,17 +12,16 @@ export default function MovieDetails() {
     )
       .then(response => response.json())
       .then(response => {
-        console.log('MovieDetails:', response);
         setQuery(response);
       })
       .catch(err => console.error(err));
   }, [params.movieId]);
 
   const location = useLocation();
-  console.log('location MovieDetails:', location);
+  // console.log('location MovieDetails:', location);
 
   const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
-  console.log('backLinkLocationRef SearchMovie:', backLinkLocationRef);
+  // console.log('backLinkLocationRef SearchMovie:', backLinkLocationRef);
 
   return (
     <>
@@ -34,7 +33,7 @@ export default function MovieDetails() {
             <img
               src={`https://image.tmdb.org/t/p/w500/${query.poster_path}`}
               alt={query.title}
-              width="300px"
+              width="200px"
             />
             <h2>{query.title}</h2>
             <p>

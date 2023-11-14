@@ -26,7 +26,6 @@ export default function SearchMovie() {
   }, [query]);
 
   const location = useLocation();
-  console.log('location SearchMovie:', location);
 
   const handleSubmit = (value, { resetForm }) => {
     setQuery(value.searchQuery);
