@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link, Outlet } from 'react-router-dom';
+import React, { useEffect, useState, useRef } from 'react';
+import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import options from 'components/services/options';
 
 export default function MovieDetails() {
@@ -17,10 +17,18 @@ export default function MovieDetails() {
       })
       .catch(err => console.error(err));
   }, [params.movieId]);
+
+  const location = useLocation();
+  console.log('location MovieDetails:', location);
+
+  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
+  console.log('backLinkLocationRef SearchMovie:', backLinkLocationRef);
+
   return (
     <>
       {query && (
         <div>
+          {<Link to={backLinkLocationRef.current}>Go back</Link>}
           <div>
             <br />
             <img

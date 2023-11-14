@@ -20,8 +20,8 @@ export default function Reviews() {
 
   return (
     <>
-      {/* {console.log('reviews query:', query)} */}
-      {query ? (
+      {console.log('reviews query:', query)}
+      {query && query.results.length > 0 ? (
         <ul>
           {query.results.map(item => (
             <li key={item.id}>

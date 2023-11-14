@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { MoviesWrap, MoviesForm } from './SearchMovie.styled';
 import { Formik, Field, Form } from 'formik';
 import options from 'components/services/options';
-//
-// "/movies/:movieId"
-// http://localhost:3000/goit-react-hw-05-movies/movies
 //
 export default function SearchMovie() {
   const [query, setQuery] = useState('');
@@ -27,6 +24,9 @@ export default function SearchMovie() {
       })
       .catch(err => console.error(err));
   }, [query]);
+
+  const location = useLocation();
+  console.log('location SearchMovie:', location);
 
   const handleSubmit = (value, { resetForm }) => {
     setQuery(value.searchQuery);
@@ -51,7 +51,9 @@ export default function SearchMovie() {
           {searchList &&
             searchList.map(item => (
               <li key={item.id}>
-                <Link to={`${item.id}`}>{item.title}</Link>
+                <Link to={`${item.id}`} state={{ from: location }}>
+                  {item.title}
+                </Link>
               </li>
             ))}
         </ul>
