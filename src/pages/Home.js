@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import options from 'components/services/options';
 
 const Home = () => {
@@ -11,16 +12,20 @@ const Home = () => {
       .then(response => response.json())
       .then(response => {
         setTrending(response.results);
-        console.log(response.results);
       })
       .catch(err => console.error(err));
   }, []);
 
   return (
     <>
-      <h1>Home page</h1>
+      <h1>Trending today</h1>
       <ul>
-        {trending && trending.map(item => <li key={item.id}>{item.title}</li>)}
+        {trending &&
+          trending.map(item => (
+            <li key={item.id}>
+              <Link to={`${item.id}`}>{item.title}</Link>
+            </li>
+          ))}
       </ul>
     </>
   );

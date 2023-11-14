@@ -22,7 +22,6 @@ export default function SearchMovie() {
     )
       .then(response => response.json())
       .then(response => {
-        console.log('response:', response);
         setSearchList(response.results);
         initialValues.searchQuery = '';
       })
@@ -35,26 +34,28 @@ export default function SearchMovie() {
   };
 
   return (
-    <MoviesWrap>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        <MoviesForm>
-          <Field
-            type="text"
-            id="searchQuery"
-            name="searchQuery"
-            placeholder="Enter movie name to search"
-          />
-          <button type="submit">Search</button>
-        </MoviesForm>
-      </Formik>
-      <ul>
-        {searchList &&
-          searchList.map(item => (
-            <li key={item.id}>
-              <Link to={`${item.id}`}>{item.title}</Link>
-            </li>
-          ))}
-      </ul>
-    </MoviesWrap>
+    <>
+      <MoviesWrap>
+        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+          <MoviesForm>
+            <Field
+              type="text"
+              id="searchQuery"
+              name="searchQuery"
+              placeholder="Enter movie name to search"
+            />
+            <button type="submit">Search</button>
+          </MoviesForm>
+        </Formik>
+        <ul>
+          {searchList &&
+            searchList.map(item => (
+              <li key={item.id}>
+                <Link to={`${item.id}`}>{item.title}</Link>
+              </li>
+            ))}
+        </ul>
+      </MoviesWrap>
+    </>
   );
 }
