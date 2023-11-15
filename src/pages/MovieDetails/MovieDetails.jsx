@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { Suspense } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import options from 'components/services/options';
 import {
@@ -24,10 +25,9 @@ export default function MovieDetails() {
   }, [params.movieId]);
 
   const location = useLocation();
-  // console.log('location MovieDetails:', location);
+  console.log(location);
 
   const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
-  // console.log('backLinkLocationRef SearchMovie:', backLinkLocationRef);
 
   return (
     <>
@@ -75,7 +75,9 @@ export default function MovieDetails() {
               </li>
             </ul>
             <hr />
-            <Outlet />
+            <Suspense fallback={<div>Loading...............</div>}>
+              <Outlet />
+            </Suspense>
           </div>
         </div>
       )}
