@@ -1,6 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import options from 'components/services/options';
+import {
+  ButtonLink,
+  MovieWrap,
+  MovieInfoWrap,
+  OverviewWrap,
+} from './MovieDetails.styled';
 
 export default function MovieDetails() {
   const params = useParams();
@@ -27,31 +33,36 @@ export default function MovieDetails() {
     <>
       {query && (
         <div>
-          {<Link to={backLinkLocationRef.current}>Go back</Link>}
-          <div>
+          {<ButtonLink to={backLinkLocationRef.current}>← Go back</ButtonLink>}
+          <MovieWrap>
             <br />
             <img
               src={`https://image.tmdb.org/t/p/w500/${query.poster_path}`}
               alt={query.title}
               width="200px"
             />
-            <h2>{query.title}</h2>
-            <p>
-              <span>User Score: </span>??%
-            </p>
-            <p>
-              <span>
-                <b>Overview</b>
-              </span>{' '}
-              {query.overview}
-            </p>
-            <p>
-              <span>
-                <b>Genres</b>
-              </span>{' '}
-              {query.genres.map(item => `${item.name} `)}
-            </p>
-          </div>
+            <MovieInfoWrap>
+              <h2>{query.title}</h2>
+              <p>
+                <span>User Score: </span>??%
+              </p>
+              <OverviewWrap>
+                <h3>
+                  <b>Overview</b>
+                </h3>
+                <p>{query.overview}</p>
+              </OverviewWrap>
+
+              <div>
+                <p>
+                  <span>
+                    <b>Genres</b>
+                  </span>{' '}
+                  {query.genres.map(item => `${item.name} `)}
+                </p>
+              </div>
+            </MovieInfoWrap>
+          </MovieWrap>
           <hr />
           <div>
             <h4>Additional information</h4>

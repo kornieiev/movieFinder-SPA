@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { MoviesWrap, MoviesForm } from './SearchMovie.styled';
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field } from 'formik';
 import options from 'components/services/options';
 //
 export default function SearchMovie() {
@@ -20,7 +20,6 @@ export default function SearchMovie() {
       .then(response => response.json())
       .then(response => {
         setSearchList(response.results);
-        initialValues.searchQuery = '';
       })
       .catch(err => console.error(err));
   }, [query]);

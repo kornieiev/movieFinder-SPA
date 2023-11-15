@@ -14,7 +14,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="movies/:movieId" element={<MovieDetails />}></Route>
+          {/* <Route path="movies/:movieId" element={<MovieDetails />}></Route> */}
           <Route path="movies" element={<SearchMovie />} />
           <Route path="movies/:movieId" element={<MovieDetails />}>
             <Route path="cast" element={<Cast />} />
