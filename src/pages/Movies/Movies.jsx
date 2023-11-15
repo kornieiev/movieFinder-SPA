@@ -15,7 +15,6 @@ export default function SearchMovie() {
   const [searchList, setSearchList] = useState([]);
 
   const location = useLocation();
-  console.log(location);
 
   useEffect(() => {
     console.log();
@@ -31,7 +30,7 @@ export default function SearchMovie() {
         })
         .catch(err => console.error(err));
     }
-  }, [location.pathname, query]);
+  }, [location.pathname, query, searchValue]);
 
   const handleSubmit = e => {
     e.preventDefault();

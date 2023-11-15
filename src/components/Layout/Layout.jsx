@@ -27,8 +27,6 @@ export default function Layout() {
       </LayoutMain>
       <hr />
       <LayoutFooter>
-        {/* <h3>FOOTER</h3>
-         */}
         <LayoutNavLink to="/" end>
           Home
         </LayoutNavLink>

@@ -25,7 +25,6 @@ export default function MovieDetails() {
   }, [params.movieId]);
 
   const location = useLocation();
-  console.log(location);
 
   const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
 
