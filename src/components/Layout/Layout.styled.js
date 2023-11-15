@@ -14,6 +14,9 @@ export const LayoutNavLink = styled(NavLink)`
   margin-left: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
+  &.active {
+    color: orangered;
+  }
 `;
 
 export const LayoutFooter = styled.footer`
