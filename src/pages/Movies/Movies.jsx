@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { MoviesWrap } from './Movies.styled';
-import { fetchMoviesData } from '../../components/services/moviesService';
-import MoviesSearchForm from './MoviesSearchForm';
-import MoviesSearchList from './MoviesSearchList';
+import { fetchMoviesData } from '../../services/moviesService';
+import MoviesSearchForm from '../../components/MoviesSearchForm/MoviesSearchForm';
+import MoviesSearchList from '../../components/MoviesSearchList/MoviesSearchList';
 
 export default function SearchMovie() {
   const [searchParams, setSearchParams] = useSearchParams('');
@@ -11,7 +11,7 @@ export default function SearchMovie() {
   const [movie, setMovie] = useState(searchValue);
   const [searchList, setSearchList] = useState([]);
 
-  const location = useLocation();
+  // const location = useLocation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +39,7 @@ export default function SearchMovie() {
         {searchList && (
           <MoviesSearchList
             searchList={searchList.results}
-            state={{ from: location }}
+            // state={{ from: location }}
           />
         )}
       </MoviesWrap>

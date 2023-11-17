@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import stubLittle from '../../stubs/stub_little.jpg';
 import { CastList, CastItem, CastImg, CastP } from './Cast.styled.js';
-import { fetchCastData } from '../services/castService.js';
+import { fetchCastData } from '../../services/castService.js';
 
 export default function Cast() {
   const params = useParams();
@@ -23,7 +23,6 @@ export default function Cast() {
 
   return (
     <>
-      {console.log(cast)}
       {cast ? (
         <CastList>
           {cast.cast.map(item => (

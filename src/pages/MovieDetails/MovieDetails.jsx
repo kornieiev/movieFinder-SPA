@@ -11,7 +11,7 @@ import {
   MovieDetailsImg,
 } from './MovieDetails.styled';
 import stubBig from '../../stubs/stub_big.jpg';
-import { fetchMovieDetailsData } from '../../components/services/movieDetailsService';
+import { fetchMovieDetailsData } from '../../services/movieDetailsService';
 
 export default function MovieDetails() {
   const params = useParams();

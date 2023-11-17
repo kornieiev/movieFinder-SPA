@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchReviewsData } from '../services/reviewsService.js';
+import { fetchReviewsData } from '../../services/reviewsService.js';
 
 export default function Reviews() {
   const params = useParams();

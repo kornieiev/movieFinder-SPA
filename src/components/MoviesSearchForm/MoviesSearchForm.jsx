@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { MoviesForm, MoviesInput, MoviesButton } from './Movies.styled';
+import {
+  MoviesForm,
+  MoviesInput,
+  MoviesButton,
+} from '../../pages/Movies/Movies.styled';
 
 export default function MoviesSearchForm({ onSubmit }) {
   const [query, setQuery] = useState('');
