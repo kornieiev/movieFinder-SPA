@@ -22,7 +22,6 @@ export const LayoutNavLink = styled(NavLink)`
 export const LayoutFooter = styled.footer`
   background-color: #f0f0f0;
   padding: 10px;
-  /* text-align: center; */
 `;
 
 export const LayoutHeader = styled.header`

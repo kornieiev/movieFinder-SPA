@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { MoviesWrap } from './Movies.styled';
 import { fetchMoviesData } from '../../services/moviesService';
 import MoviesSearchForm from '../../components/MoviesSearchForm/MoviesSearchForm';
@@ -10,8 +10,6 @@ export default function SearchMovie() {
   let searchValue = searchParams.get('movie') ?? '';
   const [movie, setMovie] = useState(searchValue);
   const [searchList, setSearchList] = useState([]);
-
-  // const location = useLocation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,12 +34,7 @@ export default function SearchMovie() {
     <>
       <MoviesWrap>
         <MoviesSearchForm onSubmit={handleSubmit} />
-        {searchList && (
-          <MoviesSearchList
-            searchList={searchList.results}
-            // state={{ from: location }}
-          />
-        )}
+        {searchList && <MoviesSearchList searchList={searchList.results} />}
       </MoviesWrap>
     </>
   );
