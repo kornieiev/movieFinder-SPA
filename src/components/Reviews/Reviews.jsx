@@ -4,25 +4,30 @@ import options from '../services/options.js';
 
 export default function Reviews() {
   const params = useParams();
-  const [query, setQuery] = useState();
+  const [reviews, setReviews] = useState('');
 
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/movie/${params.movieId}/reviews?language=en-US&page=1`,
-      options
-    )
-      .then(response => response.json())
-      .then(response => {
-        setQuery(response);
-      })
-      .catch(err => console.error(err));
+    const fetchReviewsData = async () => {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${params.movieId}/reviews?language=en-US&page=1`,
+          options
+        );
+        const result = await response.json();
+        setReviews(result);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchReviewsData();
   }, [params.movieId]);
 
   return (
     <>
-      {query && query.results.length > 0 ? (
+      {reviews.total_results > 0 ? (
         <ul>
-          {query.results.map(item => (
+          {reviews.results.map(item => (
             <li key={item.id}>
               <h4>Author: {item.author}</h4>
               <p>{item.content}</p>
@@ -30,7 +35,7 @@ export default function Reviews() {
           ))}
         </ul>
       ) : (
-        `We don't have any reviews for this movie`
+        <p>`We don't have any reviews for this movie`</p>
       )}
     </>
   );

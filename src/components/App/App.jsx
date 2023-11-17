@@ -1,13 +1,7 @@
 import React from 'react';
 import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-// import SearchMovie from '../../pages/SearchMovie/Movies';
-// import NotFound from '../NotFound/NotFound';
-// import Home from 'pages/Home';
-// import MovieDetails from 'pages/MovieDetails/MovieDetails';
 import Layout from 'components/Layout/Layout';
-// import Cast from 'components/Cast/Cast';
-// import Reviews from 'components/Reviews/Reviews';
 
 import { AppMainDiv } from './App.styled';
 

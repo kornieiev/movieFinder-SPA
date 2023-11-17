@@ -9,20 +9,25 @@ import {
   MovieInfoWrap,
   OverviewWrap,
 } from './MovieDetails.styled';
+import stubBig from '../../stubs/stub_big.jpg';
 
 export default function MovieDetails() {
   const params = useParams();
-  const [query, setQuery] = useState();
+  const [movieDetails, setMovieDetails] = useState(null);
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/movie/${params.movieId}?language=en-US`,
-      options
-    )
-      .then(response => response.json())
-      .then(response => {
-        setQuery(response);
-      })
-      .catch(err => console.error(err));
+    const fetchCastData = async () => {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${params.movieId}?language=en-US`,
+          options
+        );
+        const result = await response.json();
+        setMovieDetails(result);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchCastData();
   }, [params.movieId]);
 
   const location = useLocation();
@@ -31,34 +36,42 @@ export default function MovieDetails() {
 
   return (
     <>
-      {query && (
+      {movieDetails && (
         <div>
           {<ButtonLink to={backLinkLocationRef.current}>← Go back</ButtonLink>}
           <MovieWrap>
             <br />
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${query.poster_path}`}
-              alt={query.title}
-              width="200px"
-            />
+            {
+              <img
+                src={
+                  movieDetails.poster_path
+                    ? `https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`
+                    : stubBig
+                }
+                alt={movieDetails.title}
+                width="200px"
+                height="300px"
+              />
+            }
             <MovieInfoWrap>
-              <h2>{query.title}</h2>
+              <h2>{movieDetails.title}</h2>
               <p>
-                <span>User Score: </span>??%
+                <span>Vote average: </span>
+                {movieDetails.vote_average} / 10
               </p>
               <OverviewWrap>
                 <h3>
                   <b>Overview</b>
                 </h3>
-                <p>{query.overview}</p>
+                <p>{movieDetails.overview}</p>
               </OverviewWrap>
 
               <div>
                 <p>
                   <span>
                     <b>Genres</b>
-                  </span>{' '}
-                  {query.genres.map(item => `${item.name} `)}
+                  </span>
+                  {movieDetails.genres.map(item => `${item.name} `)}
                 </p>
               </div>
             </MovieInfoWrap>
