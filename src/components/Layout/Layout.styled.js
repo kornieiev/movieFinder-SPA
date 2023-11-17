@@ -33,4 +33,5 @@ export const LayoutHeader = styled.header`
 
 export const LayoutMain = styled.main`
   flex: 1;
+  margin-left: 20px;
 `;

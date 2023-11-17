@@ -23,7 +23,8 @@ export default function Cast() {
 
   return (
     <>
-      {cast && (
+      {console.log(cast)}
+      {cast ? (
         <CastList>
           {cast.cast.map(item => (
             <CastItem key={item.id}>
@@ -34,8 +35,6 @@ export default function Cast() {
                     : stubLittle
                 }
                 alt={item.name}
-                width="90px"
-                height="135px"
               />
               <CastP>{item.name}</CastP>
               <CastP>
@@ -44,6 +43,8 @@ export default function Cast() {
             </CastItem>
           ))}
         </CastList>
+      ) : (
+        <p>We don't have any cast info for this movie</p>
       )}
     </>
   );

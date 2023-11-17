@@ -7,6 +7,8 @@ import {
   MovieWrap,
   MovieInfoWrap,
   OverviewWrap,
+  OverviewP,
+  MovieDetailsImg,
 } from './MovieDetails.styled';
 import stubBig from '../../stubs/stub_big.jpg';
 import { fetchMovieDetailsData } from '../../components/services/movieDetailsService';
@@ -40,37 +42,35 @@ export default function MovieDetails() {
           <MovieWrap>
             <br />
             {
-              <img
-                src={
-                  movieDetails.poster_path
-                    ? `https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`
-                    : stubBig
-                }
-                alt={movieDetails.title}
-                width="200px"
-                height="300px"
-              />
+              <>
+                <MovieDetailsImg
+                  src={
+                    movieDetails.poster_path
+                      ? `https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`
+                      : stubBig
+                  }
+                  alt={movieDetails.title}
+                />
+              </>
             }
             <MovieInfoWrap>
               <h2>{movieDetails.title}</h2>
-              <p>
+              <OverviewP>
                 <span>Vote average: </span>
                 {movieDetails.vote_average.toFixed(1)} / 10
-              </p>
+              </OverviewP>
               <OverviewWrap>
                 <h3>
                   <b>Overview</b>
                 </h3>
-                <p>{movieDetails.overview}</p>
+                <OverviewP>{movieDetails.overview}</OverviewP>
               </OverviewWrap>
 
               <div>
-                <p>
-                  <span>
-                    <b>Genres: </b>
-                  </span>
+                <OverviewP>
+                  <b>Genres: </b>
                   {movieDetails.genres.map(item => `${item.name} `)}
-                </p>
+                </OverviewP>
               </div>
             </MovieInfoWrap>
           </MovieWrap>
