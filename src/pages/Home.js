@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import options from 'components/services/options';
+import { fetchHomeData } from '../components/services/homeService';
 
 const Home = () => {
   const [query, setQuery] = useState('');
 
   useEffect(() => {
-    fetch(
-      'https://api.themoviedb.org/3/trending/movie/day?language=en-US',
-      options
-    )
-      .then(response => response.json())
-      .then(response => {
-        setQuery(response.results);
-      })
-      .catch(err => console.error(err));
+    const fetchData = async () => {
+      try {
+        const castData = await fetchHomeData();
+        setQuery(castData);
+      } catch (error) {
+        console.error('Error setting cast data:', error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const location = useLocation();
@@ -22,16 +23,17 @@ const Home = () => {
   return (
     <>
       <h1>Trending today</h1>
-      <ul>
-        {query &&
-          query.map(item => (
+      {query && (
+        <ul>
+          {query.results.map(item => (
             <li key={item.id}>
               <Link to={`/movies/${item.id}`} state={{ from: location }}>
                 {item.title}
               </Link>
             </li>
           ))}
-      </ul>
+        </ul>
+      )}
     </>
   );
 };

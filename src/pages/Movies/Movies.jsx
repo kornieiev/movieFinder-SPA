@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { MoviesWrap } from './Movies.styled';
-import options from 'components/services/options';
+import { fetchMoviesData } from '../../components/services/moviesService';
 import MoviesSearchForm from './MoviesSearchForm';
 import MoviesSearchList from './MoviesSearchList';
 
@@ -14,15 +14,16 @@ export default function SearchMovie() {
   const location = useLocation();
 
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`,
-      options
-    )
-      .then(response => response.json())
-      .then(response => {
-        setSearchList(response.results);
-      })
-      .catch(err => console.error(err));
+    const fetchData = async () => {
+      try {
+        const moviesData = await fetchMoviesData(movie);
+        setSearchList(moviesData);
+      } catch (error) {
+        console.error('Error setting cast data:', error);
+      }
+    };
+
+    fetchData();
   }, [movie]);
 
   const handleSubmit = e => {
@@ -37,7 +38,7 @@ export default function SearchMovie() {
         <MoviesSearchForm onSubmit={handleSubmit} />
         {searchList && (
           <MoviesSearchList
-            searchList={searchList}
+            searchList={searchList.results}
             state={{ from: location }}
           />
         )}

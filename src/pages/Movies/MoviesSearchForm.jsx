@@ -5,8 +5,8 @@ export default function MoviesSearchForm({ onSubmit }) {
   const [query, setQuery] = useState('');
 
   const handleChange = e => {
-    setQuery(e.target.value);
-    return e.target.value;
+    setQuery(e.target.value.trim());
+    return e.target.value.trim();
   };
 
   return (

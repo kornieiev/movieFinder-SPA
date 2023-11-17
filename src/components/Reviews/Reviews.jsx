@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import options from '../services/options.js';
+import { fetchReviewsData } from '../services/reviewsService.js';
 
 export default function Reviews() {
   const params = useParams();
   const [reviews, setReviews] = useState('');
 
   useEffect(() => {
-    const fetchReviewsData = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${params.movieId}/reviews?language=en-US&page=1`,
-          options
-        );
-        const result = await response.json();
-        setReviews(result);
+        const reviewsData = await fetchReviewsData(params.movieId);
+        setReviews(reviewsData);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error setting cast data:', error);
       }
     };
 
-    fetchReviewsData();
+    fetchData();
   }, [params.movieId]);
 
   return (

@@ -2,7 +2,6 @@ import { ThreeDots } from 'react-loader-spinner';
 import React, { useEffect, useState, useRef } from 'react';
 import { Suspense } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
-import options from 'components/services/options';
 import {
   ButtonLink,
   MovieWrap,
@@ -10,24 +9,23 @@ import {
   OverviewWrap,
 } from './MovieDetails.styled';
 import stubBig from '../../stubs/stub_big.jpg';
+import { fetchMovieDetailsData } from '../../components/services/movieDetailsService';
 
 export default function MovieDetails() {
   const params = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
+
   useEffect(() => {
-    const fetchCastData = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${params.movieId}?language=en-US`,
-          options
-        );
-        const result = await response.json();
-        setMovieDetails(result);
+        const MovieDetailsData = await fetchMovieDetailsData(params.movieId);
+        setMovieDetails(MovieDetailsData);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error setting cast data:', error);
       }
     };
-    fetchCastData();
+
+    fetchData();
   }, [params.movieId]);
 
   const location = useLocation();
@@ -57,7 +55,7 @@ export default function MovieDetails() {
               <h2>{movieDetails.title}</h2>
               <p>
                 <span>Vote average: </span>
-                {movieDetails.vote_average} / 10
+                {movieDetails.vote_average.toFixed(1)} / 10
               </p>
               <OverviewWrap>
                 <h3>
@@ -69,7 +67,7 @@ export default function MovieDetails() {
               <div>
                 <p>
                   <span>
-                    <b>Genres</b>
+                    <b>Genres: </b>
                   </span>
                   {movieDetails.genres.map(item => `${item.name} `)}
                 </p>

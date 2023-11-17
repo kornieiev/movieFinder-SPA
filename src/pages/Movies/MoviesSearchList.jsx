@@ -5,13 +5,14 @@ export default function MoviesSearchList({ searchList, state }) {
   return (
     <>
       <ul>
-        {searchList.map(item => (
-          <li key={item.id}>
-            <Link to={`${item.id}`} state={state}>
-              {item.title}
-            </Link>
-          </li>
-        ))}
+        {searchList &&
+          searchList.map(item => (
+            <li key={item.id}>
+              <Link to={`${item.id}`} state={state}>
+                {item.title}
+              </Link>
+            </li>
+          ))}
       </ul>
     </>
   );
