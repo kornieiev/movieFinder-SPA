@@ -2,12 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
-export default function MoviesSearchList({ searchList, link }) {
+export default function MoviesSearchList({ searchList }) {
   const location = useLocation();
-
-  if (!link) {
-    link = '';
-  }
 
   return (
     <>
@@ -15,7 +11,7 @@ export default function MoviesSearchList({ searchList, link }) {
         {searchList &&
           searchList.map(item => (
             <li key={item.id}>
-              <Link to={`${link + item.id}`} state={{ from: location }}>
+              <Link to={`/movies/${item.id}`} state={{ from: location }}>
                 {item.title}
               </Link>
             </li>

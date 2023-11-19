@@ -21,7 +21,7 @@ const Home = () => {
   return (
     <>
       <h1>Trending today</h1>
-      {movie && <MoviesSearchList searchList={movie} link={'movies/'} />}
+      {movie && <MoviesSearchList searchList={movie} />}
     </>
   );
 };
