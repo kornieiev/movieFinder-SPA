@@ -9,6 +9,9 @@ import {
   OverviewWrap,
   OverviewP,
   MovieDetailsImg,
+  MovieNameH2,
+  OverviewH3,
+  AboutP,
 } from './MovieDetails.styled';
 import stubBig from '../../stubs/stub_big.jpg';
 import { fetchMovieDetailsData } from '../../services/movieDetailsService';
@@ -34,6 +37,10 @@ export default function MovieDetails() {
 
   const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
 
+  const year = a => {
+    return a.slice(0, 4);
+  };
+
   return (
     <>
       {movieDetails && (
@@ -54,16 +61,18 @@ export default function MovieDetails() {
               </>
             }
             <MovieInfoWrap>
-              <h2>{movieDetails.title}</h2>
+              <MovieNameH2>
+                {movieDetails.title} - {year(movieDetails.release_date)}
+              </MovieNameH2>
               <OverviewP>
                 <span>Vote average: </span>
                 {movieDetails.vote_average.toFixed(1)} / 10
               </OverviewP>
               <OverviewWrap>
-                <h3>
-                  <b>Overview</b>
-                </h3>
-                <OverviewP>{movieDetails.overview}</OverviewP>
+                <OverviewH3>
+                  <b>Overview:</b>
+                </OverviewH3>
+                <AboutP>{movieDetails.overview}</AboutP>
               </OverviewWrap>
 
               <div>

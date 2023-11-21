@@ -34,12 +34,41 @@ export const OverviewWrap = styled.div`
 `;
 
 export const OverviewP = styled.p`
+  color: darkgreen;
+  margin-left: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  max-width: 500px;
+`;
+
+export const AboutP = styled.p`
   margin-left: 10px;
   margin-right: 10px;
+  max-width: 500px;
+  border: 1px solid grey;
+  background-color: lightgrey;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
 `;
 
 export const MovieDetailsImg = styled.img`
   width: 200px;
   height: 300px;
+  border-radius: 5px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+`;
+
+export const MovieNameH2 = styled.h2`
+  color: darkred;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-shadow: 1px 3px 3px rgb(189 89 89 / 50%);
+`;
+
+export const OverviewH3 = styled.h3`
+  margin-top: 5px;
+  margin-bottom: 0px;
 `;
