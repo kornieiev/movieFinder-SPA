@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-05-movies",
+  "name": "movieFinder-SPA",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kornieiev.github.io/goit-react-hw-05-movies/",
+  "homepage": "https://kornieiev.github.io/movieFinder-SPA/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
